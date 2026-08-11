@@ -121,6 +121,17 @@
   .crow-compact .cname{font-size:12.5px}
   .crow-compact .cdesc{font-size:10.5px;opacity:.7}
 
+  /* ---- BACKLOG (low visual weight) ---- */
+  .backlog{margin-top:16px;border:1px solid var(--line)}
+  .backlog-head{display:flex;align-items:center;justify-content:space-between;padding:9px 16px;border-bottom:1px dashed var(--line)}
+  .backlog-head h2{font-family:'JetBrains Mono',monospace;font-size:10.5px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--dim)}
+  .backlog-count{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--dim2)}
+  .backlog-list{padding:2px 16px}
+  .backlog-item{display:flex;gap:8px;padding:7px 0;border-bottom:1px dashed var(--line);font-size:11.5px;line-height:1.5;flex-wrap:wrap}
+  .backlog-item:last-child{border-bottom:none}
+  .backlog-item .bname{color:var(--dim);font-weight:600;flex:none}
+  .backlog-item .bdesc{color:var(--dim2)}
+
   .footer{margin-top:22px;text-align:center;font-size:10px;letter-spacing:1.5px;color:var(--dim2);text-transform:uppercase;border-top:1px solid var(--line);padding-top:14px}
 
   @media (max-width:900px){
@@ -162,6 +173,8 @@
   </header>
 
   <div class="dashboard" id="dashboard"></div>
+
+  <div class="backlog" id="backlog"></div>
 
   <div class="footer">Personal automation fleet · lukedelcore</div>
 </div>
@@ -230,6 +243,60 @@
       icon: "book"
     }
   ];
+
+  // ---- Backlog — discussed but not built yet ----
+  const BACKLOG = [
+    {
+      name: "Self-Improving Portfolio Agent",
+      desc: "Plans a small feature for the FPV/Extern repos, writes it, tests it, and opens a PR for review. GitHub access is set up; not yet kicked off."
+    },
+    {
+      name: "Pocket AI Integration",
+      desc: "Daily digest of new voice recordings/summaries plus a nudge agent for overdue action items, via Pocket's official MCP server. Waiting on the device to arrive and connect."
+    },
+    {
+      name: "AI News Globe — Mobile Version",
+      desc: "Mobile counterpart to the desktop globe app. Deferred until desktop is finished."
+    },
+    {
+      name: "Job/Externship Outreach Agent",
+      desc: "Researches contacts at target companies, drafts outreach, logs to the Extern tracker, follows up on replies."
+    },
+    {
+      name: "Inbox Triage Agent",
+      desc: "Daily pass over email/Outlook flagging what needs a real response, drafting routine replies for review."
+    },
+    {
+      name: "FPV Battery & Maintenance Tracker",
+      desc: "Interactive log for battery cycle counts and maintenance flags on the FPV dashboard. Scoped and started, then deprioritized."
+    },
+    {
+      name: "Infrastructure Source Links",
+      desc: "Backfill real article/source URLs into infrastructure.json entries (data centers, energy, network layer) to match the news feed's new url field."
+    },
+    {
+      name: "WhatsApp / iMessage Management",
+      desc: "Agent to triage and help manage personal messages across WhatsApp and iMessage. Currently being scoped."
+    }
+  ];
+
+  function renderBacklog() {
+    const el = document.getElementById("backlog");
+    el.innerHTML = `
+      <div class="backlog-head">
+        <h2>Backlog — Ideas, Not Yet Built</h2>
+        <span class="backlog-count">${BACKLOG.length}</span>
+      </div>
+      <div class="backlog-list">
+        ${BACKLOG.map(b => `
+          <div class="backlog-item">
+            <span class="bname">${b.name}</span>
+            <span class="bdesc">— ${b.desc}</span>
+          </div>
+        `).join("")}
+      </div>
+    `;
+  }
 
   const STATUS_LABEL = { active: "Active", dev: "In Development", complete: "Complete" };
 
@@ -327,6 +394,7 @@
   document.getElementById("lastUpdated").textContent = LAST_UPDATED;
   renderReadouts();
   renderDashboard();
+  renderBacklog();
 </script>
 </body>
 </html>
