@@ -8,311 +8,451 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --bg:#080B0C; --panel:#0F1517; --raised:#151D1F;
-    --line:#1E2A2C; --line-bright:#2C3D40;
-    --text:#DCE6E4; --dim:#6B7C79; --dim2:#485855;
-    --hud:#3DF5A0;
-    --st-active:#3DF5A0; --st-dev:#2DD4F0; --st-complete:#6B7C79; --st-warn:#FFB23E;
-  }
-  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
-  html{-webkit-text-size-adjust:100%}
-  body{
-    background:var(--bg);color:var(--text);
-    font-family:'JetBrains Mono',monospace;font-size:14px;line-height:1.45;
-    padding:env(safe-area-inset-top) 0 40px;
-    background-image:
-      radial-gradient(120% 80% at 50% -10%, rgba(61,245,160,0.05), transparent 60%),
-      repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.18) 3px, transparent 4px);
-    min-height:100vh;
-  }
-  .wrap{max-width:1400px;margin:0 auto;padding:20px}
-  a{color:inherit}
+:root{
+--bg:#080B0C; --panel:#0F1517; --raised:#151D1F;
+--line:#1E2A2C; --line-bright:#2C3D40;
+--text:#DCE6E4; --dim:#6B7C79; --dim2:#485855;
+--hud:#3DF5A0;
+--st-active:#3DF5A0; --st-dev:#2DD4F0; --st-complete:#6B7C79; --st-warn:#FFB23E;
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html{-webkit-text-size-adjust:100%}
+body{
+background:var(--bg);color:var(--text);
+font-family:'JetBrains Mono',monospace;font-size:14px;line-height:1.45;
+padding:env(safe-area-inset-top) 0 40px;
+background-image:
+radial-gradient(120% 80% at 50% -10%, rgba(61,245,160,0.05), transparent 60%),
+repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.18) 3px, transparent 4px);
+min-height:100vh;
+}
+.wrap{max-width:1400px;margin:0 auto;padding:20px}
+a{color:inherit}
 
-  /* ---- HUD HEADER ---- */
-  .hud{position:relative;border:1px solid var(--line-bright);
-    background:linear-gradient(180deg, rgba(61,245,160,0.04), rgba(0,0,0,0) 70%), var(--panel);
-    padding:16px 20px;margin-bottom:16px}
-  .hud::before,.hud::after{content:'';position:absolute;width:14px;height:14px;border:2px solid var(--hud)}
-  .hud::before{top:-1px;left:-1px;border-right:0;border-bottom:0}
-  .hud::after{bottom:-1px;right:-1px;border-left:0;border-top:0}
-  .hud-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;flex-wrap:wrap}
-  .brand h1{font-family:'Chakra Petch',sans-serif;font-size:19px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;line-height:1.1}
-  .brand .sub{font-size:10.5px;color:var(--dim);letter-spacing:2px;text-transform:uppercase;margin-top:3px}
-  .brand .back{display:inline-block;margin-top:8px;font-size:10.5px;color:var(--hud);letter-spacing:1px;text-transform:uppercase;text-decoration:none;border-bottom:1px dashed var(--hud);padding-bottom:1px}
-  .brand .back:hover{opacity:.8}
-  .updated{display:flex;align-items:center;gap:6px;font-size:10px;letter-spacing:1.5px;color:var(--dim);text-transform:uppercase;white-space:nowrap;border:1px solid var(--line-bright);padding:6px 10px;background:#0a1011}
-  .updated b{color:var(--text);font-weight:600;letter-spacing:1px}
-  .updated .sq{width:6px;height:6px;background:var(--hud);flex-shrink:0}
+/* ---- HUD HEADER ---- */
+.hud{position:relative;border:1px solid var(--line-bright);
+background:linear-gradient(180deg, rgba(61,245,160,0.04), rgba(0,0,0,0) 70%), var(--panel);
+padding:16px 20px;margin-bottom:16px}
+.hud::before,.hud::after{content:'';position:absolute;width:14px;height:14px;border:2px solid var(--hud)}
+.hud::before{top:-1px;left:-1px;border-right:0;border-bottom:0}
+.hud::after{bottom:-1px;right:-1px;border-left:0;border-top:0}
+.hud-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;flex-wrap:wrap}
+.brand h1{font-family:'Chakra Petch',sans-serif;font-size:19px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;line-height:1.1}
+.brand .sub{font-size:10.5px;color:var(--dim);letter-spacing:2px;text-transform:uppercase;margin-top:3px}
+.brand .back{display:inline-block;margin-top:8px;font-size:10.5px;color:var(--hud);letter-spacing:1px;text-transform:uppercase;text-decoration:none;border-bottom:1px dashed var(--hud);padding-bottom:1px}
+.brand .back:hover{opacity:.8}
+.updated{display:flex;align-items:center;gap:6px;font-size:10px;letter-spacing:1.5px;color:var(--dim);text-transform:uppercase;white-space:nowrap;border:1px solid var(--line-bright);padding:6px 10px;background:#0a1011}
+.updated b{color:var(--text);font-weight:600;letter-spacing:1px}
+.updated .sq{width:6px;height:6px;background:var(--hud);flex-shrink:0}
 
-  .readouts{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;margin-top:14px;background:var(--line);border:1px solid var(--line)}
-  .ro{background:var(--panel);padding:10px 6px;text-align:center}
-  .ro .lab{font-size:8.5px;letter-spacing:1px;color:var(--dim);text-transform:uppercase}
-  .ro .val{font-family:'Chakra Petch',sans-serif;font-size:22px;font-weight:700;line-height:1.1;margin-top:2px}
-  .ro .val.active{color:var(--st-active)}
-  .ro .val.dev{color:var(--st-dev)}
+.readouts{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;margin-top:14px;background:var(--line);border:1px solid var(--line)}
+.ro{background:var(--panel);padding:10px 6px;text-align:center}
+.ro .lab{font-size:8.5px;letter-spacing:1px;color:var(--dim);text-transform:uppercase}
+.ro .val{font-family:'Chakra Petch',sans-serif;font-size:22px;font-weight:700;line-height:1.1;margin-top:2px}
+.ro .val.active{color:var(--st-active)}
+.ro .val.dev{color:var(--st-dev)}
 
-  .disclaimer{margin-top:12px;font-size:10.5px;line-height:1.6;color:var(--dim2);border-top:1px dashed var(--line);padding-top:10px}
+.disclaimer{margin-top:12px;font-size:10.5px;line-height:1.6;color:var(--dim2);border-top:1px dashed var(--line);padding-top:10px}
 
-  /* ---- TABLE PANEL ---- */
-  .panel{border:1px solid var(--line);background:var(--panel);border-top:3px solid var(--st-active)}
-  .panel-head{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;border-bottom:1px solid var(--line)}
-  .panel-head h2{font-family:'Chakra Petch',sans-serif;font-size:13px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;display:flex;align-items:center;gap:9px}
-  .panel-head h2 .dot{width:7px;height:7px;border-radius:50%;flex:none;background:var(--st-active);box-shadow:0 0 8px var(--st-active);animation:blink 1.8s steps(1) infinite}
-  @keyframes blink{50%{opacity:.25;box-shadow:none}}
-  .panel-count{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--dim);border:1px solid var(--line-bright);padding:2px 9px;letter-spacing:.5px}
+/* ---- CONTROLS BAR ---- */
+.controls{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px;
+border:1px solid var(--line);background:var(--panel);padding:10px 14px;margin-bottom:16px}
+.filter-group{display:flex;flex-wrap:wrap;gap:6px}
+.filter-btn{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1px;text-transform:uppercase;
+padding:6px 11px;border:1px solid var(--line-bright);background:transparent;color:var(--dim);cursor:pointer;transition:all .15s ease}
+.filter-btn:hover{color:var(--text);border-color:var(--text)}
+.filter-btn.active{color:var(--bg);background:var(--hud);border-color:var(--hud);font-weight:600}
+.trk-summary{font-size:10.5px;color:var(--dim);letter-spacing:.5px;white-space:nowrap}
+.trk-summary b{color:var(--text);font-weight:600}
 
-  .table-scroll{overflow-x:auto}
-  table{width:100%;border-collapse:collapse;font-size:12.5px;min-width:1100px}
-  thead th{
-    position:sticky;top:0;background:var(--raised);
-    font-family:'Chakra Petch',sans-serif;font-weight:700;font-size:10.5px;letter-spacing:1px;text-transform:uppercase;color:var(--dim);
-    text-align:left;padding:10px 12px;border-bottom:1px solid var(--line-bright);border-right:1px solid var(--line);
-    cursor:pointer;user-select:none;white-space:nowrap
-  }
-  thead th:last-child{border-right:none}
-  thead th:hover{color:var(--text);background:#182124}
-  thead th .arrow{display:inline-block;margin-left:5px;color:var(--hud);font-size:9px;opacity:0}
-  thead th.sorted .arrow{opacity:1}
-  tbody td{padding:10px 12px;border-bottom:1px solid var(--line);border-right:1px solid var(--line);vertical-align:top;color:var(--text)}
-  tbody td:last-child{border-right:none}
-  tbody tr:hover td{background:var(--raised)}
-  tbody tr:last-child td{border-bottom:none}
-  .building a{color:var(--st-active);text-decoration:none;font-weight:600;border-bottom:1px dashed transparent}
-  .building a:hover{border-bottom-color:var(--st-active)}
-  .neighborhood{color:var(--dim);white-space:nowrap}
-  .rent{font-family:'Chakra Petch',sans-serif;font-weight:700;color:var(--text);white-space:nowrap}
-  .avail{white-space:nowrap;color:var(--dim)}
-  .avail.now{color:var(--st-active)}
-  .bedsbaths,.sqft{white-space:nowrap;color:var(--dim)}
-  .subway{color:var(--text);opacity:.85;min-width:170px}
-  .notes{color:var(--dim);min-width:220px}
+/* ---- TABLE PANEL ---- */
+.panel{border:1px solid var(--line);background:var(--panel);border-top:3px solid var(--st-active)}
+.panel-head{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;border-bottom:1px solid var(--line)}
+.panel-head h2{font-family:'Chakra Petch',sans-serif;font-size:13px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;display:flex;align-items:center;gap:9px}
+.panel-head h2 .dot{width:7px;height:7px;border-radius:50%;flex:none;background:var(--st-active);box-shadow:0 0 8px var(--st-active);animation:blink 1.8s steps(1) infinite}
+@keyframes blink{50%{opacity:.25;box-shadow:none}}
+.panel-count{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--dim);border:1px solid var(--line-bright);padding:2px 9px;letter-spacing:.5px}
 
-  .footer{margin-top:22px;text-align:center;font-size:10px;letter-spacing:1.5px;color:var(--dim2);text-transform:uppercase;border-top:1px solid var(--line);padding-top:14px}
+.table-scroll{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:12.5px;min-width:1180px}
+thead th{
+position:sticky;top:0;background:var(--raised);
+font-family:'Chakra Petch',sans-serif;font-weight:700;font-size:10.5px;letter-spacing:1px;text-transform:uppercase;color:var(--dim);
+text-align:left;padding:10px 12px;border-bottom:1px solid var(--line-bright);border-right:1px solid var(--line);
+cursor:pointer;user-select:none;white-space:nowrap
+}
+thead th:last-child{border-right:none}
+thead th:hover{color:var(--text);background:#182124}
+thead th.no-sort{cursor:default}
+thead th.no-sort:hover{color:var(--dim);background:var(--raised)}
+thead th .arrow{display:inline-block;margin-left:5px;color:var(--hud);font-size:9px;opacity:0}
+thead th.sorted .arrow{opacity:1}
+tbody td{padding:10px 12px;border-bottom:1px solid var(--line);border-right:1px solid var(--line);vertical-align:top;color:var(--text)}
+tbody td:last-child{border-right:none}
+tbody tr:hover td{background:var(--raised)}
+tbody tr:last-child td{border-bottom:none}
+tr.row-dim td{opacity:.5}
+tr.row-dim:hover td{opacity:1}
+.building a{color:var(--st-active);text-decoration:none;font-weight:600;border-bottom:1px dashed transparent}
+.building a:hover{border-bottom-color:var(--st-active)}
+.neighborhood{color:var(--dim);white-space:nowrap}
+.rent{font-family:'Chakra Petch',sans-serif;font-weight:700;color:var(--text);white-space:nowrap}
+.avail{white-space:nowrap;color:var(--dim)}
+.avail.now{color:var(--st-active)}
+.bedsbaths,.sqft{white-space:nowrap;color:var(--dim)}
+.subway{color:var(--text);opacity:.85;min-width:170px}
+.notes{color:var(--dim);min-width:220px}
 
-  @media (max-width:560px){
-    .readouts{grid-template-columns:repeat(2,1fr)}
-    .ro .val{font-size:18px}
-    .wrap{padding:14px}
-  }
-  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+/* ---- TRACKING CONTROLS ---- */
+.trk-th{width:88px}
+.trk-cell{white-space:nowrap;padding:8px 10px}
+.trk-group{display:flex;gap:4px}
+.trk-btn{width:22px;height:22px;display:flex;align-items:center;justify-content:center;flex:none;
+background:transparent;border:1px solid var(--line-bright);color:var(--dim2);cursor:pointer;padding:0;transition:all .15s ease}
+.trk-btn:hover{color:var(--text);border-color:var(--text)}
+.trk-btn svg{width:13px;height:13px;pointer-events:none}
+.trk-btn.trk-fav.active{color:var(--st-warn);border-color:var(--st-warn);background:rgba(255,178,62,.12)}
+.trk-btn.trk-contact.active{color:var(--st-active);border-color:var(--st-active);background:rgba(61,245,160,.12)}
+.trk-btn.trk-view.active{color:var(--st-dev);border-color:var(--st-dev);background:rgba(45,212,240,.12)}
+
+.footer{margin-top:22px;text-align:center;font-size:10px;letter-spacing:1.5px;color:var(--dim2);text-transform:uppercase;border-top:1px solid var(--line);padding-top:14px}
+
+@media (max-width:560px){
+.readouts{grid-template-columns:repeat(2,1fr)}
+.ro .val{font-size:18px}
+.wrap{padding:14px}
+.controls{flex-direction:column;align-items:stretch}
+.trk-summary{white-space:normal}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
 <body>
 <div class="wrap">
 
-  <header class="hud">
-    <div class="hud-top">
-      <div class="brand">
-        <h1>Apartment Listings Tracker</h1>
-        <div class="sub">True 3BR · ≤$10K/mo · Manhattan &amp; Brooklyn</div>
-        <a class="back" href="../">&larr; Back to Mission Control</a>
-      </div>
-      <div class="updated"><span class="sq"></span>Last updated: <b id="lastUpdated">—</b></div>
-    </div>
+<header class="hud">
+<div class="hud-top">
+<div class="brand">
+<h1>Apartment Listings Tracker</h1>
+<div class="sub">True 3BR · ≤$10K/mo · Manhattan &amp; Brooklyn</div>
+<a class="back" href="../">&larr; Back to Mission Control</a>
+</div>
+<div class="updated"><span class="sq"></span>Last updated: <b id="lastUpdated">—</b></div>
+</div>
 
-    <div class="readouts" id="readouts"></div>
+<div class="readouts" id="readouts"></div>
 
-    <div class="disclaimer">
-      Static, hand-maintained listing tracker. Click any column header to sort (click again to reverse). Rent, availability,
-      and unit details reflect the last manual research pass above — verify current status on StreetEasy before reaching out.
-    </div>
-  </header>
+<div class="disclaimer">
+Static, hand-maintained listing tracker. Click any column header to sort (click again to reverse). Rent, availability,
+and unit details reflect the last manual research pass above — verify current status on StreetEasy before reaching out.
+Use the star / check / eye icons per row to mark favorites, outreach, and viewed listings — saved locally in this browser
+only (not synced across devices).
+</div>
+</header>
 
-  <section class="panel">
-    <div class="panel-head">
-      <h2><span class="dot"></span>Listings</h2>
-      <span class="panel-count" id="listCount">0</span>
-    </div>
-    <div class="table-scroll">
-      <table id="listingsTable">
-        <thead>
-          <tr>
-            <th data-key="building" data-type="string">Building<span class="arrow">▲</span></th>
-            <th data-key="neighborhood" data-type="string">Neighborhood<span class="arrow">▲</span></th>
-            <th data-key="bedsBaths" data-type="string">Beds/Baths<span class="arrow">▲</span></th>
-            <th data-key="sqft" data-type="number">Sq Ft<span class="arrow">▲</span></th>
-            <th data-key="rent" data-type="number">Rent<span class="arrow">▲</span></th>
-            <th data-key="available" data-type="date">Available<span class="arrow">▲</span></th>
-            <th data-key="subway" data-type="string">Subway<span class="arrow">▲</span></th>
-            <th data-key="notes" data-type="string">Notes<span class="arrow">▲</span></th>
-          </tr>
-        </thead>
-        <tbody id="tbody"></tbody>
-      </table>
-    </div>
-  </section>
+<div class="controls">
+<div class="filter-group" id="filterGroup">
+<button type="button" class="filter-btn active" data-filter="all">All</button>
+<button type="button" class="filter-btn" data-filter="favorites">Favorites Only</button>
+<button type="button" class="filter-btn" data-filter="notContacted">Not Yet Contacted</button>
+<button type="button" class="filter-btn" data-filter="notViewed">Not Yet Viewed</button>
+</div>
+<div class="trk-summary" id="trkSummary"></div>
+</div>
 
-  <div class="footer">Personal automation fleet · lukedelcore</div>
+<section class="panel">
+<div class="panel-head">
+<h2><span class="dot"></span>Listings</h2>
+<span class="panel-count" id="listCount">0</span>
+</div>
+<div class="table-scroll">
+<table id="listingsTable">
+<thead>
+<tr>
+<th class="trk-th no-sort">Track</th>
+<th data-key="building" data-type="string">Building<span class="arrow">▲</span></th>
+<th data-key="neighborhood" data-type="string">Neighborhood<span class="arrow">▲</span></th>
+<th data-key="bedsBaths" data-type="string">Beds/Baths<span class="arrow">▲</span></th>
+<th data-key="sqft" data-type="number">Sq Ft<span class="arrow">▲</span></th>
+<th data-key="rent" data-type="number">Rent<span class="arrow">▲</span></th>
+<th data-key="available" data-type="date">Available<span class="arrow">▲</span></th>
+<th data-key="subway" data-type="string">Subway<span class="arrow">▲</span></th>
+<th data-key="notes" data-type="string">Notes<span class="arrow">▲</span></th>
+</tr>
+</thead>
+<tbody id="tbody"></tbody>
+</table>
+</div>
+</section>
+
+<div class="footer">Personal automation fleet · lukedelcore</div>
 </div>
 
 <script>
-  const LAST_UPDATED = "August 11, 2026";
+const LAST_UPDATED = "August 11, 2026";
 
-  // ---- Listings data ----
-  const LISTINGS = [
-    // Chelsea
-    { building:"503 West 22nd St #5W", neighborhood:"Chelsea", bedsBaths:"3/2", sqft:null, rent:8995, availableRaw:"now", subway:"C/E 23rd St 7min", notes:"Doorman, in-unit W/D, near High Line", url:"https://streeteasy.com/building/203-10-avenue-new_york/5w" },
-    { building:"448 West 19th St #3CD", neighborhood:"Chelsea", bedsBaths:"3/2", sqft:null, rent:8500, availableRaw:"now", subway:"A/C/E/L 14th St 6min", notes:"In-unit W/D, elevator", url:"https://streeteasy.com/building/448-west-19-street-new_york/3cd" },
-    { building:"266 West 25th St #4N", neighborhood:"Chelsea", bedsBaths:"3/2", sqft:null, rent:8495, availableRaw:"9/1/2026", subway:"C/E 23rd St 1min", notes:"Bright/airy, doorman, laundry in bldg", url:"https://streeteasy.com/building/266-west-25-street-new_york/4n" },
-    { building:"135 West 24th St #2AB", neighborhood:"Chelsea", bedsBaths:"3/2", sqft:null, rent:8400, availableRaw:"now", subway:"1/F/M 1-2min", notes:"Elevator, laundry in bldg, fireplace", url:"https://streeteasy.com/building/135-west-24-street-new_york/2ab" },
-    // West Village
-    { building:"72 Carmine St #3E", neighborhood:"West Village", bedsBaths:"3/2", sqft:null, rent:9995, availableRaw:"9/1/2026", subway:"1 train Houston St 1min", notes:"Private balcony, in-unit W/D, doorman", url:"https://streeteasy.com/building/72-carmine-street-new_york/3e" },
-    { building:"239 West 12th St #4B", neighborhood:"West Village", bedsBaths:"3/2", sqft:null, rent:8500, availableRaw:"9/1/2026", subway:"F/L/M/1/2/3 14th St 1min", notes:"Duplex, 2 balconies, no laundry", url:"https://streeteasy.com/building/239-west-12-street-new_york/4b" },
-    { building:"30 Carmine St #2A", neighborhood:"West Village", bedsBaths:"3/2", sqft:null, rent:9295, availableRaw:"9/1/2026", subway:"A/B/C/D/E/F/M W4th St 2min", notes:"Great light, in-unit W/D, no-fee", url:"https://streeteasy.com/building/30-carmine-street-new_york/2a" },
-    { building:"42 Bank St #1", neighborhood:"West Village", bedsBaths:"3/2", sqft:null, rent:8500, availableRaw:"now", subway:"F/L/M/1/2/3 14th St 3min", notes:"Duplex, in-unit laundry, live-in super", url:"https://streeteasy.com/building/42-bank-street-new_york/1" },
-    // Flatiron
-    { building:"30 West 18th St #8F", neighborhood:"Flatiron", bedsBaths:"3/2", sqft:null, rent:7695, availableRaw:"9/11/2026", subway:"F/L/M/1/2/3 14th St 2min", notes:"24hr doorman, concierge, roof deck", url:"https://streeteasy.com/building/flatiron-18/8f" },
-    // NoMad
-    { building:"121 Madison Ave #3I", neighborhood:"NoMad", bedsBaths:"3/2", sqft:null, rent:9995, availableRaw:"now", subway:"6 train 33rd St 2min", notes:"King primary w/ en-suite, doorman", url:"https://streeteasy.com/building/121-madison-avenue-new_york/3i" },
-    { building:"108 East 30th St #3", neighborhood:"NoMad", bedsBaths:"3/2", sqft:null, rent:9000, availableRaw:"now", subway:"6 train 28th St 1min", notes:"In-unit W/D, balcony, walk-in closet", url:"https://streeteasy.com/building/108-east-30-street-new_york/3" },
-    { building:"36 West 26th St #2", neighborhood:"NoMad", bedsBaths:"3/2", sqft:2000, sqftLabel:"2000+", rent:8000, availableRaw:"9/1/2026", subway:"R/W 28th St 2min", notes:"Full-floor loft, in-unit W/D, best sqft/price Manhattan", url:"https://streeteasy.com/building/36-west-26-street-new_york/2" },
-    // Nolita
-    { building:"252 Mott St #5F", neighborhood:"Nolita", bedsBaths:"3/2", sqft:null, rent:9995, availableRaw:"now", subway:"B/D/F/M/6 Bleecker St 2min", notes:"Balconies, doorman, in-unit W/D", url:"https://streeteasy.com/building/252-mott-street-new_york/5f" },
-    { building:"248 Mott St #3/3", neighborhood:"Nolita", bedsBaths:"3/2", sqft:null, rent:8495, availableRaw:"now", subway:"B/D/F/M/6 Bleecker St 2min", notes:"In-unit laundry, walk-up, cheapest of cluster", url:"https://streeteasy.com/building/248-mott-street-new_york/33" },
-    { building:"259 Elizabeth St #7C", neighborhood:"Nolita", bedsBaths:"3/2", sqft:null, rent:9000, availableRaw:"now", subway:"B/D/F/M/6 Bleecker St 2min", notes:"Duplex, balcony, part-time doorman, condo", url:"https://streeteasy.com/building/259-elizabeth-street-new_york/7c" },
-    { building:"259 Elizabeth St #PHC", neighborhood:"Nolita", bedsBaths:"3/2", sqft:null, rent:9000, availableRaw:"now", subway:"B/D/F/M/6 Bleecker St 2min", notes:"Duplex penthouse, chef's kitchen", url:"https://streeteasy.com/building/259-elizabeth-street-new_york/phc" },
-    { building:"248 Mott St #5/6", neighborhood:"Nolita", bedsBaths:"3/2", sqft:null, rent:9995, availableRaw:"now", subway:"B/D/F/M/6 Bleecker St 2min", notes:"Roof deck+rights, in-unit W/D", url:"https://streeteasy.com/building/248-mott-street-new_york/56" },
-    { building:"248 Mott St #6", neighborhood:"Nolita", bedsBaths:"3/2", sqft:null, rent:9995, availableRaw:"now", subway:"B/D/F/M/6 Bleecker St 2min", notes:"Two marble baths, in-unit W/D", url:"https://streeteasy.com/building/248-mott-street-new_york/6" },
-    { building:"248 Mott St #BB", neighborhood:"Nolita", bedsBaths:"3/2", sqft:null, rent:9995, availableRaw:"now", subway:"B/D/F/M/6 Bleecker St 2min", notes:"Wine cooler, in-unit W/D", url:"https://streeteasy.com/building/248-mott-street-new_york/bb" },
-    // Kips Bay
-    { building:"30 Waterside Plaza #3036D", neighborhood:"Kips Bay", bedsBaths:"3/2", sqft:1158, rent:8015, availableRaw:"8/20/2026", subway:"L 1st Ave/6 28th St 13min, ferry 9min", notes:"Full complex, flexes to 4BR", url:"https://streeteasy.com/building/waterside-plaza/3036d" },
-    { building:"30 Waterside Plaza #3030J", neighborhood:"Kips Bay", bedsBaths:"3/2", sqft:null, rent:8355, availableRaw:"8/25/2026", subway:"L 1st Ave/6 28th St 13min, ferry 9min", notes:"Same building", url:"https://streeteasy.com/building/waterside-plaza/3030j" },
-    { building:"243 East 31st St #1A", neighborhood:"Kips Bay", bedsBaths:"3/2", sqft:null, rent:7995, availableRaw:"now", subway:"6 train 33rd St 6min", notes:"Massive private backyard, gut-renovated, in-unit W/D", url:"https://streeteasy.com/building/243-east-31-street-new_york/1a" },
-    { building:"214 East 24th St #3A", neighborhood:"Kips Bay", bedsBaths:"3/2", sqft:null, rent:8995, availableRaw:"9/5/2026", subway:"6 train 23rd St 4min", notes:"Penthouse, deco fireplace, skylight, doorman", url:"https://streeteasy.com/building/214-east-24-street-new_york/3a" },
-    { building:"382 3rd Ave #11A", neighborhood:"Kips Bay", bedsBaths:"3/2", sqft:null, rent:7995, availableRaw:"9/5/2026", subway:"6 train 28th St 3min", notes:"11th floor, W/S exposure", url:"https://streeteasy.com/building/382-3-avenue-new_york/11a" },
-    // Downtown Brooklyn
-    { building:"22 Chapel St #19B", neighborhood:"Downtown Brooklyn", bedsBaths:"3/2", sqft:null, rent:7998, availableRaw:"now", subway:"A/C High St 4min", notes:"New doorman tower, gym, roof deck", url:"https://streeteasy.com/building/22-chapel-street-brooklyn/19b" },
-    { building:"22 Chapel St #20B", neighborhood:"Downtown Brooklyn", bedsBaths:"3/2", sqft:null, rent:7850, availableRaw:"now", subway:"A/C High St 4min", notes:"Same bldg, skyline view", url:"https://streeteasy.com/building/22-chapel-street-brooklyn/20b" },
-    { building:"104 Fleet Pl #4C", neighborhood:"Downtown Brooklyn", bedsBaths:"3/2", sqft:null, rent:8600, availableRaw:"now", subway:"B/Q/R DeKalb Ave 1min", notes:"New tower, pool/hot tub/gym", url:"https://streeteasy.com/building/the-fleet-104-fleet-place/4c" },
-    { building:"104 Fleet Pl #14A", neighborhood:"Downtown Brooklyn", bedsBaths:"3/2", sqft:null, rent:7950, availableRaw:"8/15/2026", subway:"B/Q/R DeKalb Ave 1min", notes:"Same tower, balcony/terrace", url:"https://streeteasy.com/building/the-fleet-104-fleet-place/14a" },
-    { building:"99 Fleet Pl #6J", neighborhood:"Downtown Brooklyn", bedsBaths:"3/2", sqft:null, rent:9300, availableRaw:"10/1/2026", subway:"B/Q/R DeKalb Ave 2min", notes:"Sister luxury tower, guarantors ok", url:"https://streeteasy.com/building/99-fleet-place-brooklyn/6j" },
-    { building:"99 Fleet Pl #6A", neighborhood:"Downtown Brooklyn", bedsBaths:"3/2", sqft:null, rent:9300, availableRaw:"10/1/2026", subway:"B/Q/R DeKalb Ave 2min", notes:"Central air, in-unit W/D", url:"https://streeteasy.com/building/99-fleet-place-brooklyn/6a" },
-    { building:"106 Fleet Pl #1401", neighborhood:"Downtown Brooklyn", bedsBaths:"3/2", sqft:null, rent:7950, availableRaw:"now", subway:"B/Q/R DeKalb Ave 1min", notes:"Third Fleet tower", url:"https://streeteasy.com/building/the-fleet-106-fleet-place/1401" },
-    { building:"106 Fleet Pl #4F", neighborhood:"Downtown Brooklyn", bedsBaths:"3/2", sqft:null, rent:8600, availableRaw:"now", subway:"B/Q/R DeKalb Ave 1min", notes:"Same bldg", url:"https://streeteasy.com/building/the-fleet-106-fleet-place/4f" },
-    { building:"430 Albee Sq #28B", neighborhood:"Downtown Brooklyn", bedsBaths:"3/2", sqft:null, rent:9277, availableRaw:"now", subway:"2/3 Hoyt St, B/Q/R DeKalb 1min", notes:"Balcony, floor-ceiling windows, doorman", url:"https://streeteasy.com/building/canvas-albee-square/28b" },
-    { building:"80 Livingston St #1", neighborhood:"Downtown Brooklyn", bedsBaths:"3/2", sqft:null, rent:5750, availableRaw:"9/18/2026", subway:"2/3/4/5 Borough Hall 1 block", notes:"Cheapest true 3BR, in-unit W/D", url:"https://streeteasy.com/building/80-livingston-street-brooklyn/1" },
-    { building:"100 Willoughby St #14M", neighborhood:"Downtown Brooklyn", bedsBaths:"3/2", sqft:1242, rent:8140, availableRaw:"8/22/2026", subway:"A/C/F/R Jay St-MetroTech 1min", notes:"AVA DoBro, doorman/concierge/gym", url:"https://streeteasy.com/building/ava-dobro/14m" },
-    { building:"415 Red Hook Ln #12D", neighborhood:"Downtown Brooklyn", bedsBaths:"3/2", sqft:null, rent:8834, availableRaw:"8/31/2026", subway:"A/C/F/R Jay St-MetroTech 2min", notes:"Rent-stabilized, central air, in-unit W/D", url:"https://streeteasy.com/building/415-red-hook-lane-brooklyn/12d" },
-    { building:"214 Duffield St #47E", neighborhood:"Downtown Brooklyn", bedsBaths:"3/2", sqft:1467, rent:8040, availableRaw:"9/28/2026", subway:"A/C/F/R Jay-MetroTech 1min", notes:"Largest sqft at this price, pet spa", url:"https://streeteasy.com/building/avalon-willoughby-square/47e" },
-    // DUMBO
-    { building:"181 Front St #5C", neighborhood:"DUMBO", bedsBaths:"3/2", sqft:null, rent:9364, availableRaw:"8/18/2026", subway:"F York St 1min", notes:"Rent-stabilized, light-flooded, best subway access", url:"https://streeteasy.com/building/181-front-street/5c" },
-    // Williamsburg
-    { building:"74 Jackson St #4", neighborhood:"Williamsburg", bedsBaths:"3/2.5", sqft:1280, rent:9500, availableRaw:"now", subway:"G/L Lorimer St 3min", notes:"New condo, roof terrace+balcony", url:"https://streeteasy.com/building/74-jackson-street-brooklyn/4" },
-    { building:"148 Conselyea St #1", neighborhood:"Williamsburg", bedsBaths:"3/2.5", sqft:2000, rent:10000, availableRaw:"8/15/2026", subway:"L Graham Ave 1min", notes:"Private entrance, flexes to 4BR", url:"https://streeteasy.com/building/148-conselyea-street-brooklyn/1" },
-    { building:"193 Graham Ave #3M", neighborhood:"Williamsburg", bedsBaths:"3/2", sqft:null, rent:6800, availableRaw:"9/1/2026", subway:"L Montrose Ave 4min", notes:"New development, balcony, in-unit W/D", url:"https://streeteasy.com/building/193-graham/3m" },
-    { building:"193 Graham Ave #3N", neighborhood:"Williamsburg", bedsBaths:"3/2", sqft:null, rent:6800, availableRaw:"9/1/2026", subway:"L Montrose Ave 4min", notes:"Sister unit", url:"https://streeteasy.com/building/193-graham/3n" },
-    { building:"77 Berry St #1D", neighborhood:"Williamsburg", bedsBaths:"3/2", sqft:null, rent:7200, availableRaw:"9/1/2026", subway:"L Bedford Ave 3min", notes:"Duplex, roof deck", url:"https://streeteasy.com/building/77-berry-street-brooklyn/1d" },
-    { building:"77 Berry St #1C", neighborhood:"Williamsburg", bedsBaths:"3/2", sqft:1154, rent:7199, availableRaw:"9/1/2026", subway:"L Bedford Ave 3min", notes:"Same bldg", url:"https://streeteasy.com/building/77-berry-street-brooklyn/1c" },
-    { building:"86 Manhattan Ave #1C", neighborhood:"Williamsburg", bedsBaths:"3/2.5", sqft:1877, rent:6500, availableRaw:"now", subway:"J/M Lorimer St 4min", notes:"Private yard, best space/dollar", url:"https://streeteasy.com/building/86-manhattan-avenue-brooklyn/1c" },
-    { building:"157 Wythe Ave #2B", neighborhood:"Williamsburg", bedsBaths:"3/2", sqft:null, rent:7650, availableRaw:"now", subway:"Ferry North 5th St 3min", notes:"High ceilings, good light", url:"https://streeteasy.com/building/157-wythe-avenue-brooklyn/2b" },
-    { building:"540 Driggs Ave #1H", neighborhood:"Williamsburg", bedsBaths:"3/2", sqft:null, rent:7200, availableRaw:"now", subway:"L Bedford Ave 1min", notes:"Duplex, private garden, no-fee", url:"https://streeteasy.com/building/540-driggs-avenue-brooklyn/1h" },
-    { building:"540 Driggs Ave #1J", neighborhood:"Williamsburg", bedsBaths:"3/2", sqft:null, rent:7200, availableRaw:"now", subway:"L Bedford Ave 1min", notes:"Same bldg, 7 rooms, terrace+backyard", url:"https://streeteasy.com/building/540-driggs-avenue-brooklyn/1j" },
-    { building:"53 Kent Ave #GARDEN", neighborhood:"Williamsburg", bedsBaths:"3/2", sqft:1250, rent:9950, availableRaw:"10/1/2026", subway:"Ferry North 5th St 5min", notes:"Across from waterfront", url:"https://streeteasy.com/building/53-kent-avenue-brooklyn/garden" },
-    { building:"125 Borinquen Pl #609", neighborhood:"Williamsburg", bedsBaths:"3/2", sqft:null, rent:7612, availableRaw:"9/1/2026", subway:"J/M/Z Marcy Ave 5min", notes:"Rent-stabilized, full-service", url:"https://streeteasy.com/building/125-borinquen-place-brooklyn/609" },
-    { building:"108 Withers St #1", neighborhood:"Williamsburg", bedsBaths:"3/2.5", sqft:1100, rent:9000, availableRaw:"now", subway:"G/L Lorimer St 4min", notes:"Detached house, private parking", url:"https://streeteasy.com/building/108-withers-street-brooklyn/1" },
-    { building:"227 Grand St #2D", neighborhood:"Williamsburg", bedsBaths:"3/2", sqft:null, rent:7651, availableRaw:"now", subway:"L Bedford Ave 5min", notes:"Condo, elevator, garage", url:"https://streeteasy.com/building/227-grand-street-brooklyn/2d" },
-    { building:"583 Lorimer St #3R", neighborhood:"Williamsburg", bedsBaths:"3/2", sqft:null, rent:7500, availableRaw:"now", subway:"G/L Lorimer St+Metropolitan Ave 1min", notes:"2 balconies+roof terrace, best dual-line access", url:"https://streeteasy.com/building/583-lorimer-street-brooklyn/3r" },
-    { building:"248 South 3rd St #1", neighborhood:"Williamsburg", bedsBaths:"3/2.5", sqft:null, rent:8400, availableRaw:"now", subway:"J/M/Z Marcy Ave 3min", notes:"Duplex, roof rights", url:"https://streeteasy.com/building/248-south-3-street-brooklyn/1" },
-    { building:"68 North 8th St #3F", neighborhood:"Williamsburg", bedsBaths:"3/2", sqft:null, rent:7895, availableRaw:"early Sept", subway:"Ferry North 5th St 3min", notes:"—", url:"https://streeteasy.com/building/68-north-8-street-brooklyn/3f" },
-    { building:"119 Kent Ave #2G", neighborhood:"Williamsburg", bedsBaths:"3/2", sqft:null, rent:7695, availableRaw:"9/1/2026", subway:"Ferry North 5th St 2min", notes:"Massive private roof deck, loft-style", url:"https://streeteasy.com/building/119-kent-avenue-brooklyn/2g" },
-    { building:"148 Meserole St #4S", neighborhood:"Williamsburg", bedsBaths:"3/2.5", sqft:null, rent:5800, availableRaw:"9/1/2026", subway:"L Montrose Ave 4min", notes:"No laundry mentioned, near Bushwick edge", url:"https://streeteasy.com/building/148-meserole-street-brooklyn/4s" },
-    { building:"303 Wythe Ave #425", neighborhood:"Williamsburg", bedsBaths:"3/2", sqft:null, rent:9400, availableRaw:"now", subway:"Ferry South 8th St 8min, L Bedford Ave 9min", notes:"New 2024, good light, longest walk", url:"https://streeteasy.com/building/303-wythe-avenue-brooklyn/425" },
-    { building:"632 Lorimer St #401", neighborhood:"Williamsburg", bedsBaths:"3/2", sqft:1345, sqftLabel:"1345+429 outdoor", rent:8900, availableRaw:"8/15/2026", subway:"G/L Lorimer St 2min", notes:"Penthouse, ODA-designed condo", url:"https://streeteasy.com/building/632-lorimer-street-brooklyn/401" },
-    { building:"303 Wythe Ave #805", neighborhood:"Williamsburg", bedsBaths:"3/2", sqft:null, rent:9400, availableRaw:"8/15/2026", subway:"Ferry South 8th St 8min, L Bedford Ave 9min", notes:"Same bldg, waterfront views select units", url:"https://streeteasy.com/building/303-wythe-avenue-brooklyn/805" },
-  ];
+// ---- Listings data ----
+const LISTINGS = [
+// Chelsea
+{ building:"503 West 22nd St #5W", neighborhood:"Chelsea", bedsBaths:"3/2", sqft:null, rent:8995, availableRaw:"now", subway:"C/E 23rd St 7min", notes:"Doorman, in-unit W/D, near High Line", url:"https://streeteasy.com/building/203-10-avenue-new_york/5w" },
+{ building:"448 West 19th St #3CD", neighborhood:"Chelsea", bedsBaths:"3/2", sqft:null, rent:8500, availableRaw:"now", subway:"A/C/E/L 14th St 6min", notes:"In-unit W/D, elevator", url:"https://streeteasy.com/building/448-west-19-street-new_york/3cd" },
+{ building:"266 West 25th St #4N", neighborhood:"Chelsea", bedsBaths:"3/2", sqft:null, rent:8495, availableRaw:"9/1/2026", subway:"C/E 23rd St 1min", notes:"Bright/airy, doorman, laundry in bldg", url:"https://streeteasy.com/building/266-west-25-street-new_york/4n" },
+{ building:"135 West 24th St #2AB", neighborhood:"Chelsea", bedsBaths:"3/2", sqft:null, rent:8400, availableRaw:"now", subway:"1/F/M 1-2min", notes:"Elevator, laundry in bldg, fireplace", url:"https://streeteasy.com/building/135-west-24-street-new_york/2ab" },
+// West Village
+{ building:"72 Carmine St #3E", neighborhood:"West Village", bedsBaths:"3/2", sqft:null, rent:9995, availableRaw:"9/1/2026", subway:"1 train Houston St 1min", notes:"Private balcony, in-unit W/D, doorman", url:"https://streeteasy.com/building/72-carmine-street-new_york/3e" },
+{ building:"239 West 12th St #4B", neighborhood:"West Village", bedsBaths:"3/2", sqft:null, rent:8500, availableRaw:"9/1/2026", subway:"F/L/M/1/2/3 14th St 1min", notes:"Duplex, 2 balconies, no laundry", url:"https://streeteasy.com/building/239-west-12-street-new_york/4b" },
+{ building:"30 Carmine St #2A", neighborhood:"West Village", bedsBaths:"3/2", sqft:null, rent:9295, availableRaw:"9/1/2026", subway:"A/B/C/D/E/F/M W4th St 2min", notes:"Great light, in-unit W/D, no-fee", url:"https://streeteasy.com/building/30-carmine-street-new_york/2a" },
+{ building:"42 Bank St #1", neighborhood:"West Village", bedsBaths:"3/2", sqft:null, rent:8500, availableRaw:"now", subway:"F/L/M/1/2/3 14th St 3min", notes:"Duplex, in-unit laundry, live-in super", url:"https://streeteasy.com/building/42-bank-street-new_york/1" },
+// Flatiron
+{ building:"30 West 18th St #8F", neighborhood:"Flatiron", bedsBaths:"3/2", sqft:null, rent:7695, availableRaw:"9/11/2026", subway:"F/L/M/1/2/3 14th St 2min", notes:"24hr doorman, concierge, roof deck", url:"https://streeteasy.com/building/flatiron-18/8f" },
+// NoMad
+{ building:"121 Madison Ave #3I", neighborhood:"NoMad", bedsBaths:"3/2", sqft:null, rent:9995, availableRaw:"now", subway:"6 train 33rd St 2min", notes:"King primary w/ en-suite, doorman", url:"https://streeteasy.com/building/121-madison-avenue-new_york/3i" },
+{ building:"108 East 30th St #3", neighborhood:"NoMad", bedsBaths:"3/2", sqft:null, rent:9000, availableRaw:"now", subway:"6 train 28th St 1min", notes:"In-unit W/D, balcony, walk-in closet", url:"https://streeteasy.com/building/108-east-30-street-new_york/3" },
+{ building:"36 West 26th St #2", neighborhood:"NoMad", bedsBaths:"3/2", sqft:2000, sqftLabel:"2000+", rent:8000, availableRaw:"9/1/2026", subway:"R/W 28th St 2min", notes:"Full-floor loft, in-unit W/D, best sqft/price Manhattan", url:"https://streeteasy.com/building/36-west-26-street-new_york/2" },
+// Nolita
+{ building:"252 Mott St #5F", neighborhood:"Nolita", bedsBaths:"3/2", sqft:null, rent:9995, availableRaw:"now", subway:"B/D/F/M/6 Bleecker St 2min", notes:"Balconies, doorman, in-unit W/D", url:"https://streeteasy.com/building/252-mott-street-new_york/5f" },
+{ building:"248 Mott St #3/3", neighborhood:"Nolita", bedsBaths:"3/2", sqft:null, rent:8495, availableRaw:"now", subway:"B/D/F/M/6 Bleecker St 2min", notes:"In-unit laundry, walk-up, cheapest of cluster", url:"https://streeteasy.com/building/248-mott-street-new_york/33" },
+{ building:"259 Elizabeth St #7C", neighborhood:"Nolita", bedsBaths:"3/2", sqft:null, rent:9000, availableRaw:"now", subway:"B/D/F/M/6 Bleecker St 2min", notes:"Duplex, balcony, part-time doorman, condo", url:"https://streeteasy.com/building/259-elizabeth-street-new_york/7c" },
+{ building:"259 Elizabeth St #PHC", neighborhood:"Nolita", bedsBaths:"3/2", sqft:null, rent:9000, availableRaw:"now", subway:"B/D/F/M/6 Bleecker St 2min", notes:"Duplex penthouse, chef's kitchen", url:"https://streeteasy.com/building/259-elizabeth-street-new_york/phc" },
+{ building:"248 Mott St #5/6", neighborhood:"Nolita", bedsBaths:"3/2", sqft:null, rent:9995, availableRaw:"now", subway:"B/D/F/M/6 Bleecker St 2min", notes:"Roof deck+rights, in-unit W/D", url:"https://streeteasy.com/building/248-mott-street-new_york/56" },
+{ building:"248 Mott St #6", neighborhood:"Nolita", bedsBaths:"3/2", sqft:null, rent:9995, availableRaw:"now", subway:"B/D/F/M/6 Bleecker St 2min", notes:"Two marble baths, in-unit W/D", url:"https://streeteasy.com/building/248-mott-street-new_york/6" },
+{ building:"248 Mott St #BB", neighborhood:"Nolita", bedsBaths:"3/2", sqft:null, rent:9995, availableRaw:"now", subway:"B/D/F/M/6 Bleecker St 2min", notes:"Wine cooler, in-unit W/D", url:"https://streeteasy.com/building/248-mott-street-new_york/bb" },
+// Kips Bay
+{ building:"30 Waterside Plaza #3036D", neighborhood:"Kips Bay", bedsBaths:"3/2", sqft:1158, rent:8015, availableRaw:"8/20/2026", subway:"L 1st Ave/6 28th St 13min, ferry 9min", notes:"Full complex, flexes to 4BR", url:"https://streeteasy.com/building/waterside-plaza/3036d" },
+{ building:"30 Waterside Plaza #3030J", neighborhood:"Kips Bay", bedsBaths:"3/2", sqft:null, rent:8355, availableRaw:"8/25/2026", subway:"L 1st Ave/6 28th St 13min, ferry 9min", notes:"Same building", url:"https://streeteasy.com/building/waterside-plaza/3030j" },
+{ building:"243 East 31st St #1A", neighborhood:"Kips Bay", bedsBaths:"3/2", sqft:null, rent:7995, availableRaw:"now", subway:"6 train 33rd St 6min", notes:"Massive private backyard, gut-renovated, in-unit W/D", url:"https://streeteasy.com/building/243-east-31-street-new_york/1a" },
+{ building:"214 East 24th St #3A", neighborhood:"Kips Bay", bedsBaths:"3/2", sqft:null, rent:8995, availableRaw:"9/5/2026", subway:"6 train 23rd St 4min", notes:"Penthouse, deco fireplace, skylight, doorman", url:"https://streeteasy.com/building/214-east-24-street-new_york/3a" },
+{ building:"382 3rd Ave #11A", neighborhood:"Kips Bay", bedsBaths:"3/2", sqft:null, rent:7995, availableRaw:"9/5/2026", subway:"6 train 28th St 3min", notes:"11th floor, W/S exposure", url:"https://streeteasy.com/building/382-3-avenue-new_york/11a" },
+// Downtown Brooklyn
+{ building:"22 Chapel St #19B", neighborhood:"Downtown Brooklyn", bedsBaths:"3/2", sqft:null, rent:7998, availableRaw:"now", subway:"A/C High St 4min", notes:"New doorman tower, gym, roof deck", url:"https://streeteasy.com/building/22-chapel-street-brooklyn/19b" },
+{ building:"22 Chapel St #20B", neighborhood:"Downtown Brooklyn", bedsBaths:"3/2", sqft:null, rent:7850, availableRaw:"now", subway:"A/C High St 4min", notes:"Same bldg, skyline view", url:"https://streeteasy.com/building/22-chapel-street-brooklyn/20b" },
+{ building:"104 Fleet Pl #4C", neighborhood:"Downtown Brooklyn", bedsBaths:"3/2", sqft:null, rent:8600, availableRaw:"now", subway:"B/Q/R DeKalb Ave 1min", notes:"New tower, pool/hot tub/gym", url:"https://streeteasy.com/building/the-fleet-104-fleet-place/4c" },
+{ building:"104 Fleet Pl #14A", neighborhood:"Downtown Brooklyn", bedsBaths:"3/2", sqft:null, rent:7950, availableRaw:"8/15/2026", subway:"B/Q/R DeKalb Ave 1min", notes:"Same tower, balcony/terrace", url:"https://streeteasy.com/building/the-fleet-104-fleet-place/14a" },
+{ building:"99 Fleet Pl #6J", neighborhood:"Downtown Brooklyn", bedsBaths:"3/2", sqft:null, rent:9300, availableRaw:"10/1/2026", subway:"B/Q/R DeKalb Ave 2min", notes:"Sister luxury tower, guarantors ok", url:"https://streeteasy.com/building/99-fleet-place-brooklyn/6j" },
+{ building:"99 Fleet Pl #6A", neighborhood:"Downtown Brooklyn", bedsBaths:"3/2", sqft:null, rent:9300, availableRaw:"10/1/2026", subway:"B/Q/R DeKalb Ave 2min", notes:"Central air, in-unit W/D", url:"https://streeteasy.com/building/99-fleet-place-brooklyn/6a" },
+{ building:"106 Fleet Pl #1401", neighborhood:"Downtown Brooklyn", bedsBaths:"3/2", sqft:null, rent:7950, availableRaw:"now", subway:"B/Q/R DeKalb Ave 1min", notes:"Third Fleet tower", url:"https://streeteasy.com/building/the-fleet-106-fleet-place/1401" },
+{ building:"106 Fleet Pl #4F", neighborhood:"Downtown Brooklyn", bedsBaths:"3/2", sqft:null, rent:8600, availableRaw:"now", subway:"B/Q/R DeKalb Ave 1min", notes:"Same bldg", url:"https://streeteasy.com/building/the-fleet-106-fleet-place/4f" },
+{ building:"430 Albee Sq #28B", neighborhood:"Downtown Brooklyn", bedsBaths:"3/2", sqft:null, rent:9277, availableRaw:"now", subway:"2/3 Hoyt St, B/Q/R DeKalb 1min", notes:"Balcony, floor-ceiling windows, doorman", url:"https://streeteasy.com/building/canvas-albee-square/28b" },
+{ building:"80 Livingston St #1", neighborhood:"Downtown Brooklyn", bedsBaths:"3/2", sqft:null, rent:5750, availableRaw:"9/18/2026", subway:"2/3/4/5 Borough Hall 1 block", notes:"Cheapest true 3BR, in-unit W/D", url:"https://streeteasy.com/building/80-livingston-street-brooklyn/1" },
+{ building:"100 Willoughby St #14M", neighborhood:"Downtown Brooklyn", bedsBaths:"3/2", sqft:1242, rent:8140, availableRaw:"8/22/2026", subway:"A/C/F/R Jay St-MetroTech 1min", notes:"AVA DoBro, doorman/concierge/gym", url:"https://streeteasy.com/building/ava-dobro/14m" },
+{ building:"415 Red Hook Ln #12D", neighborhood:"Downtown Brooklyn", bedsBaths:"3/2", sqft:null, rent:8834, availableRaw:"8/31/2026", subway:"A/C/F/R Jay St-MetroTech 2min", notes:"Rent-stabilized, central air, in-unit W/D", url:"https://streeteasy.com/building/415-red-hook-lane-brooklyn/12d" },
+{ building:"214 Duffield St #47E", neighborhood:"Downtown Brooklyn", bedsBaths:"3/2", sqft:1467, rent:8040, availableRaw:"9/28/2026", subway:"A/C/F/R Jay-MetroTech 1min", notes:"Largest sqft at this price, pet spa", url:"https://streeteasy.com/building/avalon-willoughby-square/47e" },
+// DUMBO
+{ building:"181 Front St #5C", neighborhood:"DUMBO", bedsBaths:"3/2", sqft:null, rent:9364, availableRaw:"8/18/2026", subway:"F York St 1min", notes:"Rent-stabilized, light-flooded, best subway access", url:"https://streeteasy.com/building/181-front-street/5c" },
+// Williamsburg
+{ building:"74 Jackson St #4", neighborhood:"Williamsburg", bedsBaths:"3/2.5", sqft:1280, rent:9500, availableRaw:"now", subway:"G/L Lorimer St 3min", notes:"New condo, roof terrace+balcony", url:"https://streeteasy.com/building/74-jackson-street-brooklyn/4" },
+{ building:"148 Conselyea St #1", neighborhood:"Williamsburg", bedsBaths:"3/2.5", sqft:2000, rent:10000, availableRaw:"8/15/2026", subway:"L Graham Ave 1min", notes:"Private entrance, flexes to 4BR", url:"https://streeteasy.com/building/148-conselyea-street-brooklyn/1" },
+{ building:"193 Graham Ave #3M", neighborhood:"Williamsburg", bedsBaths:"3/2", sqft:null, rent:6800, availableRaw:"9/1/2026", subway:"L Montrose Ave 4min", notes:"New development, balcony, in-unit W/D", url:"https://streeteasy.com/building/193-graham/3m" },
+{ building:"193 Graham Ave #3N", neighborhood:"Williamsburg", bedsBaths:"3/2", sqft:null, rent:6800, availableRaw:"9/1/2026", subway:"L Montrose Ave 4min", notes:"Sister unit", url:"https://streeteasy.com/building/193-graham/3n" },
+{ building:"77 Berry St #1D", neighborhood:"Williamsburg", bedsBaths:"3/2", sqft:null, rent:7200, availableRaw:"9/1/2026", subway:"L Bedford Ave 3min", notes:"Duplex, roof deck", url:"https://streeteasy.com/building/77-berry-street-brooklyn/1d" },
+{ building:"77 Berry St #1C", neighborhood:"Williamsburg", bedsBaths:"3/2", sqft:1154, rent:7199, availableRaw:"9/1/2026", subway:"L Bedford Ave 3min", notes:"Same bldg", url:"https://streeteasy.com/building/77-berry-street-brooklyn/1c" },
+{ building:"86 Manhattan Ave #1C", neighborhood:"Williamsburg", bedsBaths:"3/2.5", sqft:1877, rent:6500, availableRaw:"now", subway:"J/M Lorimer St 4min", notes:"Private yard, best space/dollar", url:"https://streeteasy.com/building/86-manhattan-avenue-brooklyn/1c" },
+{ building:"157 Wythe Ave #2B", neighborhood:"Williamsburg", bedsBaths:"3/2", sqft:null, rent:7650, availableRaw:"now", subway:"Ferry North 5th St 3min", notes:"High ceilings, good light", url:"https://streeteasy.com/building/157-wythe-avenue-brooklyn/2b" },
+{ building:"540 Driggs Ave #1H", neighborhood:"Williamsburg", bedsBaths:"3/2", sqft:null, rent:7200, availableRaw:"now", subway:"L Bedford Ave 1min", notes:"Duplex, private garden, no-fee", url:"https://streeteasy.com/building/540-driggs-avenue-brooklyn/1h" },
+{ building:"540 Driggs Ave #1J", neighborhood:"Williamsburg", bedsBaths:"3/2", sqft:null, rent:7200, availableRaw:"now", subway:"L Bedford Ave 1min", notes:"Same bldg, 7 rooms, terrace+backyard", url:"https://streeteasy.com/building/540-driggs-avenue-brooklyn/1j" },
+{ building:"53 Kent Ave #GARDEN", neighborhood:"Williamsburg", bedsBaths:"3/2", sqft:1250, rent:9950, availableRaw:"10/1/2026", subway:"Ferry North 5th St 5min", notes:"Across from waterfront", url:"https://streeteasy.com/building/53-kent-avenue-brooklyn/garden" },
+{ building:"125 Borinquen Pl #609", neighborhood:"Williamsburg", bedsBaths:"3/2", sqft:null, rent:7612, availableRaw:"9/1/2026", subway:"J/M/Z Marcy Ave 5min", notes:"Rent-stabilized, full-service", url:"https://streeteasy.com/building/125-borinquen-place-brooklyn/609" },
+{ building:"108 Withers St #1", neighborhood:"Williamsburg", bedsBaths:"3/2.5", sqft:1100, rent:9000, availableRaw:"now", subway:"G/L Lorimer St 4min", notes:"Detached house, private parking", url:"https://streeteasy.com/building/108-withers-street-brooklyn/1" },
+{ building:"227 Grand St #2D", neighborhood:"Williamsburg", bedsBaths:"3/2", sqft:null, rent:7651, availableRaw:"now", subway:"L Bedford Ave 5min", notes:"Condo, elevator, garage", url:"https://streeteasy.com/building/227-grand-street-brooklyn/2d" },
+{ building:"583 Lorimer St #3R", neighborhood:"Williamsburg", bedsBaths:"3/2", sqft:null, rent:7500, availableRaw:"now", subway:"G/L Lorimer St+Metropolitan Ave 1min", notes:"2 balconies+roof terrace, best dual-line access", url:"https://streeteasy.com/building/583-lorimer-street-brooklyn/3r" },
+{ building:"248 South 3rd St #1", neighborhood:"Williamsburg", bedsBaths:"3/2.5", sqft:null, rent:8400, availableRaw:"now", subway:"J/M/Z Marcy Ave 3min", notes:"Duplex, roof rights", url:"https://streeteasy.com/building/248-south-3-street-brooklyn/1" },
+{ building:"68 North 8th St #3F", neighborhood:"Williamsburg", bedsBaths:"3/2", sqft:null, rent:7895, availableRaw:"early Sept", subway:"Ferry North 5th St 3min", notes:"—", url:"https://streeteasy.com/building/68-north-8-street-brooklyn/3f" },
+{ building:"119 Kent Ave #2G", neighborhood:"Williamsburg", bedsBaths:"3/2", sqft:null, rent:7695, availableRaw:"9/1/2026", subway:"Ferry North 5th St 2min", notes:"Massive private roof deck, loft-style", url:"https://streeteasy.com/building/119-kent-avenue-brooklyn/2g" },
+{ building:"148 Meserole St #4S", neighborhood:"Williamsburg", bedsBaths:"3/2.5", sqft:null, rent:5800, availableRaw:"9/1/2026", subway:"L Montrose Ave 4min", notes:"No laundry mentioned, near Bushwick edge", url:"https://streeteasy.com/building/148-meserole-street-brooklyn/4s" },
+{ building:"303 Wythe Ave #425", neighborhood:"Williamsburg", bedsBaths:"3/2", sqft:null, rent:9400, availableRaw:"now", subway:"Ferry South 8th St 8min, L Bedford Ave 9min", notes:"New 2024, good light, longest walk", url:"https://streeteasy.com/building/303-wythe-avenue-brooklyn/425" },
+{ building:"632 Lorimer St #401", neighborhood:"Williamsburg", bedsBaths:"3/2", sqft:1345, sqftLabel:"1345+429 outdoor", rent:8900, availableRaw:"8/15/2026", subway:"G/L Lorimer St 2min", notes:"Penthouse, ODA-designed condo", url:"https://streeteasy.com/building/632-lorimer-street-brooklyn/401" },
+{ building:"303 Wythe Ave #805", neighborhood:"Williamsburg", bedsBaths:"3/2", sqft:null, rent:9400, availableRaw:"8/15/2026", subway:"Ferry South 8th St 8min, L Bedford Ave 9min", notes:"Same bldg, waterfront views select units", url:"https://streeteasy.com/building/303-wythe-avenue-brooklyn/805" },
+];
 
-  // ---- Availability parsing for sorting ----
-  const TODAY = new Date("2026-08-11T00:00:00");
-  function parseAvailable(raw){
-    if(/^now$/i.test(raw)) return TODAY.getTime();
-    if(/early sept/i.test(raw)) return new Date("2026-09-01T00:00:00").getTime();
-    const parts = raw.split("/");
-    if(parts.length === 3){
-      const [m,d,y] = parts.map(Number);
-      return new Date(y, m-1, d).getTime();
-    }
-    return Number.POSITIVE_INFINITY;
-  }
-  LISTINGS.forEach(l => { l.available = parseAvailable(l.availableRaw); });
+// ---- Availability parsing for sorting ----
+const TODAY = new Date("2026-08-11T00:00:00");
+function parseAvailable(raw){
+if(/^now$/i.test(raw)) return TODAY.getTime();
+if(/early sept/i.test(raw)) return new Date("2026-09-01T00:00:00").getTime();
+const parts = raw.split("/");
+if(parts.length === 3){
+const [m,d,y] = parts.map(Number);
+return new Date(y, m-1, d).getTime();
+}
+return Number.POSITIVE_INFINITY;
+}
+LISTINGS.forEach(l => { l.available = parseAvailable(l.availableRaw); });
 
-  let sortKey = "rent";
-  let sortDir = 1; // 1 asc, -1 desc
+let sortKey = "rent";
+let sortDir = 1; // 1 asc, -1 desc
+let currentFilter = "all"; // all | favorites | notContacted | notViewed
 
-  function renderReadouts(){
-    const el = document.getElementById("readouts");
-    const rents = LISTINGS.map(l => l.rent);
-    const avg = Math.round(rents.reduce((a,b)=>a+b,0) / rents.length);
-    const min = Math.min(...rents);
-    const boroughs = new Set(LISTINGS.map(l => l.neighborhood));
-    el.innerHTML =
-      '<div class="ro"><div class="lab">Total Listings</div><div class="val active">' + LISTINGS.length + '</div></div>' +
-      '<div class="ro"><div class="lab">Neighborhoods</div><div class="val">' + boroughs.size + '</div></div>' +
-      '<div class="ro"><div class="lab">Avg Rent</div><div class="val">$' + avg.toLocaleString() + '</div></div>' +
-      '<div class="ro"><div class="lab">Lowest Rent</div><div class="val dev">$' + min.toLocaleString() + '</div></div>';
-    document.getElementById("listCount").textContent = LISTINGS.length + " units";
-  }
+// ---- Per-listing tracking state (localStorage, keyed by listing URL) ----
+const TRK_STORAGE_KEY = "aptTrackerState";
+let TRK_STATE = {};
+try { TRK_STATE = JSON.parse(localStorage.getItem(TRK_STORAGE_KEY)) || {}; } catch(e){ TRK_STATE = {}; }
 
-  function rowHTML(l){
-    const sqftDisplay = l.sqft == null ? "—" : (l.sqftLabel || l.sqft.toLocaleString());
-    const availDisplay = /^now$/i.test(l.availableRaw) ? '<span class="avail now">Now</span>' : '<span class="avail">' + l.availableRaw + '</span>';
-    return (
-      '<tr>' +
-        '<td class="building"><a href="' + l.url + '" target="_blank" rel="noopener noreferrer">' + l.building + '</a></td>' +
-        '<td class="neighborhood">' + l.neighborhood + '</td>' +
-        '<td class="bedsbaths">' + l.bedsBaths + '</td>' +
-        '<td class="sqft">' + sqftDisplay + '</td>' +
-        '<td class="rent">$' + l.rent.toLocaleString() + '</td>' +
-        '<td class="avail-cell">' + availDisplay + '</td>' +
-        '<td class="subway">' + l.subway + '</td>' +
-        '<td class="notes">' + l.notes + '</td>' +
-      '</tr>'
-    );
-  }
+function getTrkState(url){
+const s = TRK_STATE[url] || {};
+return { favorite: !!s.favorite, contacted: !!s.contacted, viewed: !!s.viewed };
+}
+function setTrkState(url, patch){
+const cur = getTrkState(url);
+TRK_STATE[url] = Object.assign(cur, patch);
+try { localStorage.setItem(TRK_STORAGE_KEY, JSON.stringify(TRK_STATE)); } catch(e){}
+}
 
-  function render(){
-    const sorted = [...LISTINGS].sort((a,b) => {
-      let av = a[sortKey], bv = b[sortKey];
-      if(sortKey === "sqft"){
-        av = a.sqft == null ? Infinity : a.sqft;
-        bv = b.sqft == null ? Infinity : b.sqft;
-      }
-      if(typeof av === "string") av = av.toLowerCase();
-      if(typeof bv === "string") bv = bv.toLowerCase();
-      if(av < bv) return -1 * sortDir;
-      if(av > bv) return 1 * sortDir;
-      return 0;
-    });
-    document.getElementById("tbody").innerHTML = sorted.map(rowHTML).join("");
+function trkIcon(type, active){
+if(type === "favorite"){
+return '<svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linejoin="round" fill="' + (active ? "currentColor" : "none") + '"><path d="M12 3l2.6 5.6 6.2.6-4.6 4.2 1.3 6.1L12 16.9l-5.5 2.6 1.3-6.1L3.2 9.2l6.2-.6L12 3z"/></svg>';
+}
+if(type === "contacted"){
+return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6"/></svg>';
+}
+return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="2.6" fill="' + (active ? "currentColor" : "none") + '"/></svg>';
+}
 
-    document.querySelectorAll("thead th").forEach(th => {
-      th.classList.remove("sorted");
-      const arrow = th.querySelector(".arrow");
-      if(th.dataset.key === sortKey){
-        th.classList.add("sorted");
-        arrow.textContent = sortDir === 1 ? "▲" : "▼";
-      } else {
-        arrow.textContent = "▲";
-      }
-    });
-  }
+function trkGroupHTML(url){
+const s = getTrkState(url);
+const safeUrl = String(url).replace(/"/g, "&quot;");
+return (
+'<div class="trk-group" data-url="' + safeUrl + '">' +
+'<button type="button" class="trk-btn trk-fav' + (s.favorite ? " active" : "") + '" data-type="favorite" title="Favorite">' + trkIcon("favorite", s.favorite) + '</button>' +
+'<button type="button" class="trk-btn trk-contact' + (s.contacted ? " active" : "") + '" data-type="contacted" title="Contacted">' + trkIcon("contacted", s.contacted) + '</button>' +
+'<button type="button" class="trk-btn trk-view' + (s.viewed ? " active" : "") + '" data-type="viewed" title="Viewed">' + trkIcon("viewed", s.viewed) + '</button>' +
+'</div>'
+);
+}
 
-  document.querySelectorAll("thead th").forEach(th => {
-    th.addEventListener("click", () => {
-      const key = th.dataset.key;
-      if(sortKey === key){
-        sortDir *= -1;
-      } else {
-        sortKey = key;
-        sortDir = 1;
-      }
-      render();
-    });
-  });
+function matchesFilter(l){
+const s = getTrkState(l.url);
+if(currentFilter === "favorites") return s.favorite;
+if(currentFilter === "notContacted") return !s.contacted;
+if(currentFilter === "notViewed") return !s.viewed;
+return true;
+}
 
-  document.getElementById("lastUpdated").textContent = LAST_UPDATED;
-  renderReadouts();
-  render();
+function updateTrkSummary(){
+let fav = 0, cont = 0, viewed = 0;
+LISTINGS.forEach(l => {
+const s = getTrkState(l.url);
+if(s.favorite) fav++;
+if(s.contacted) cont++;
+if(s.viewed) viewed++;
+});
+const unviewed = LISTINGS.length - viewed;
+document.getElementById("trkSummary").innerHTML =
+'<b>' + fav + '</b> favorited &middot; <b>' + cont + '</b> contacted &middot; <b>' + unviewed + '</b> unviewed';
+}
+
+function renderReadouts(){
+const el = document.getElementById("readouts");
+const rents = LISTINGS.map(l => l.rent);
+const avg = Math.round(rents.reduce((a,b)=>a+b,0) / rents.length);
+const min = Math.min(...rents);
+const boroughs = new Set(LISTINGS.map(l => l.neighborhood));
+el.innerHTML =
+'<div class="ro"><div class="lab">Total Listings</div><div class="val active">' + LISTINGS.length + '</div></div>' +
+'<div class="ro"><div class="lab">Neighborhoods</div><div class="val">' + boroughs.size + '</div></div>' +
+'<div class="ro"><div class="lab">Avg Rent</div><div class="val">$' + avg.toLocaleString() + '</div></div>' +
+'<div class="ro"><div class="lab">Lowest Rent</div><div class="val dev">$' + min.toLocaleString() + '</div></div>';
+}
+
+function rowHTML(l){
+const sqftDisplay = l.sqft == null ? "—" : (l.sqftLabel || l.sqft.toLocaleString());
+const availDisplay = /^now$/i.test(l.availableRaw) ? '<span class="avail now">Now</span>' : '<span class="avail">' + l.availableRaw + '</span>';
+const s = getTrkState(l.url);
+const rowClass = (s.viewed && !s.favorite) ? ' class="row-dim"' : '';
+return (
+'<tr' + rowClass + '>' +
+'<td class="trk-cell">' + trkGroupHTML(l.url) + '</td>' +
+'<td class="building"><a href="' + l.url + '" target="_blank" rel="noopener noreferrer" class="se-link" data-url="' + l.url + '">' + l.building + '</a></td>' +
+'<td class="neighborhood">' + l.neighborhood + '</td>' +
+'<td class="bedsbaths">' + l.bedsBaths + '</td>' +
+'<td class="sqft">' + sqftDisplay + '</td>' +
+'<td class="rent">$' + l.rent.toLocaleString() + '</td>' +
+'<td class="avail-cell">' + availDisplay + '</td>' +
+'<td class="subway">' + l.subway + '</td>' +
+'<td class="notes">' + l.notes + '</td>' +
+'</tr>'
+);
+}
+
+function render(){
+const filtered = LISTINGS.filter(matchesFilter);
+const sorted = [...filtered].sort((a,b) => {
+let av = a[sortKey], bv = b[sortKey];
+if(sortKey === "sqft"){
+av = a.sqft == null ? Infinity : a.sqft;
+bv = b.sqft == null ? Infinity : b.sqft;
+}
+if(typeof av === "string") av = av.toLowerCase();
+if(typeof bv === "string") bv = bv.toLowerCase();
+if(av < bv) return -1 * sortDir;
+if(av > bv) return 1 * sortDir;
+return 0;
+});
+document.getElementById("tbody").innerHTML = sorted.map(rowHTML).join("");
+document.getElementById("listCount").textContent = filtered.length + " / " + LISTINGS.length + " units";
+
+document.querySelectorAll("thead th").forEach(th => {
+const arrow = th.querySelector(".arrow");
+if(!arrow) return; // non-sortable column (Track)
+th.classList.remove("sorted");
+if(th.dataset.key === sortKey){
+th.classList.add("sorted");
+arrow.textContent = sortDir === 1 ? "▲" : "▼";
+} else {
+arrow.textContent = "▲";
+}
+});
+
+updateTrkSummary();
+}
+
+document.querySelectorAll("thead th[data-key]").forEach(th => {
+th.addEventListener("click", () => {
+const key = th.dataset.key;
+if(sortKey === key){
+sortDir *= -1;
+} else {
+sortKey = key;
+sortDir = 1;
+}
+render();
+});
+});
+
+document.querySelectorAll(".filter-btn").forEach(btn => {
+btn.addEventListener("click", () => {
+document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
+btn.classList.add("active");
+currentFilter = btn.dataset.filter;
+render();
+});
+});
+
+document.getElementById("tbody").addEventListener("click", (e) => {
+const btn = e.target.closest(".trk-btn");
+if(btn){
+e.preventDefault();
+const group = btn.closest(".trk-group");
+const url = group.dataset.url;
+const type = btn.dataset.type;
+const cur = getTrkState(url);
+setTrkState(url, { [type]: !cur[type] });
+render();
+return;
+}
+const link = e.target.closest(".se-link");
+if(link){
+const url = link.dataset.url;
+const cur = getTrkState(url);
+if(!cur.viewed){
+setTrkState(url, { viewed: true });
+render();
+}
+}
+});
+
+document.getElementById("lastUpdated").textContent = LAST_UPDATED;
+renderReadouts();
+render();
 </script>
 </body>
 </html>
