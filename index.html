@@ -169,6 +169,10 @@
     <div class="disclaimer">
       This is a static, hand-maintained status board. These automations run locally on-machine and are not
       polled live — statuses reflect the last manual update above, not a real-time connection.
+      Known issue (as of 8/19/2026): the task scheduler backing these automations currently shows zero
+      registered scheduled tasks, so none of the daily/weekly items below are actually firing on schedule
+      pending a platform-side fix. This page and the Apartment Tracker are being kept current via manual
+      catch-up runs in the meantime.
     </div>
   </header>
 
@@ -195,7 +199,7 @@
   };
 
   // ---- Content — edit this array to update the board ----
-  const LAST_UPDATED = "August 15, 2026";
+  const LAST_UPDATED = "August 19, 2026";
 
   const AUTOMATIONS = [
     {
