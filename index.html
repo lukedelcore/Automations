@@ -169,10 +169,10 @@
     <div class="disclaimer">
       This is a static, hand-maintained status board. These automations run locally on-machine and are not
       polled live — statuses reflect the last manual update above, not a real-time connection.
-      Known issue (as of 8/19/2026): the task scheduler backing these automations currently shows zero
-      registered scheduled tasks, so none of the daily/weekly items below are actually firing on schedule
-      pending a platform-side fix. This page and the Apartment Tracker are being kept current via manual
-      catch-up runs in the meantime.
+      Update (8/19–20/2026): the earlier scheduler reliability issue is resolved — most items below have
+      been migrated off Claude's own scheduler onto native Windows Scheduled Tasks running the claude CLI
+      headlessly. Only the DJI Marketplace Watcher and StreetEasy Search &amp; Diff remain on Claude's own
+      scheduler, since both need live browser interaction.
     </div>
   </header>
 
@@ -205,15 +205,23 @@
     {
       name: "DJI O3 Marketplace Watcher",
       desc: "Daily Facebook Marketplace check for DJI O3 Air Unit/VTX listings near San Francisco, split into standalone-unit vs complete-drone results.",
-      schedule: "Daily · 12:06 PM",
+      schedule: "Daily · 12:06 PM · Claude scheduler",
       type: "Marketplace Scan",
       status: "active",
       icon: "tag"
     },
     {
+      name: "StreetEasy Search & Diff",
+      desc: "Daily StreetEasy search for true 3BR/2BA rentals in target Manhattan/Brooklyn neighborhoods, under \$10k/mo, for Sept/Oct move-in. Writes new matches to a results file — first stage of a 3-part pipeline (search → notify → tracker sync).",
+      schedule: "Daily · ~4:01 AM · Claude scheduler",
+      type: "Housing Search",
+      status: "active",
+      icon: "home"
+    },
+    {
       name: "FPV Weekly Digest",
       desc: "Weekly roundup of genuinely new FPV drone parts and techniques from Reddit and vendor sites.",
-      schedule: "Weekly · Fridays 4:10 AM",
+      schedule: "Weekly · Fridays 4:03 AM · native task",
       type: "Digest",
       status: "active",
       icon: "mail"
@@ -221,7 +229,7 @@
     {
       name: "AI Frontier Digest",
       desc: "Daily narrative digest covering humanoid robotics, AI compute/infrastructure, and AI labs & product news.",
-      schedule: "Daily · 4:10 AM",
+      schedule: "Daily · 4:07 AM · native task",
       type: "Digest",
       status: "active",
       icon: "fileText"
@@ -229,31 +237,39 @@
     {
       name: "AI News Globe Feed",
       desc: "Geotagged AI news feed across 7 categories — robotics, compute, labs/apps, regulation, supply chain, investments, NIMBY opposition. Powers the desktop globe app. Rolling 2-week retention window.",
-      schedule: "Daily · 4:07 AM",
+      schedule: "Daily · 4:10 AM · native task",
       type: "Data Feed",
       status: "active",
       icon: "globe"
     },
     {
-      name: "StreetEasy Apartment Watcher",
-      desc: "Daily StreetEasy search for true 3BR/2BA rentals in target Manhattan/Brooklyn neighborhoods, under \$10k/mo, for Sept/Oct move-in. Emails a report when new qualifying listings appear.",
-      schedule: "Daily · 4:01 AM",
+      name: "StreetEasy Notifier",
+      desc: "Reads the Search & Diff results and emails a report via Gmail only when new qualifying listings were found. Second stage of the StreetEasy pipeline.",
+      schedule: "Daily · ~4:22 AM · native task",
       type: "Housing Search",
       status: "active",
-      icon: "home"
+      icon: "bell"
+    },
+    {
+      name: "Apartment Tracker Sync",
+      desc: "Reads the Search & Diff results and stages new listings for an automatic git push to the standalone Apartment Tracker site (pushed by the ApartmentTrackerPush task). Third stage of the StreetEasy pipeline.",
+      schedule: "Daily · ~4:26 AM · native task",
+      type: "Housing Search",
+      status: "active",
+      icon: "archive"
     },
     {
       name: "Gmail Urgent Monitor",
-      desc: "Scans inbox for work (@bain.com), delivery, and job search/recruiting emails; pushes a notification only when something urgent is found. Read-only.",
-      schedule: "Every 2 hrs · 8 AM–10 PM",
+      desc: "Scans inbox via the Gmail API connector for work (@bain.com), delivery, and job search/recruiting emails; pushes a notification only when something urgent is found. Read-only.",
+      schedule: "Every 2 hrs · 8 AM–10 PM · native task",
       type: "Inbox Monitor",
       status: "active",
       icon: "bell"
     },
     {
       name: "Gmail Spam Archiver",
-      desc: "Archives obvious marketing/promotional email. Silent — no notifications, no replies.",
-      schedule: "Daily · 9:40 PM",
+      desc: "Archives obvious marketing/promotional email via the Gmail API connector. Silent — no notifications, no replies.",
+      schedule: "Daily · 9:40 PM · native task",
       type: "Inbox Cleanup",
       status: "active",
       icon: "archive"
@@ -276,11 +292,19 @@
     },
     {
       name: "Automation Status Dashboard",
-      desc: "This very GitHub Pages dashboard, kept in sync automatically overnight.",
-      schedule: "Daily · 2:05 AM",
+      desc: "This very GitHub Pages dashboard. Staged by a native task and pushed by the separate DashboardSyncPush task.",
+      schedule: "Daily · 2:05 AM · native task",
       type: "Meta",
       status: "active",
       icon: "grid"
+    },
+    {
+      name: "Apartment Tracker",
+      desc: "Standalone GitHub Pages site listing all tracked 3BR/2BA apartments, with favorite/contacted/viewed tracking. Kept in sync by the StreetEasy pipeline above.",
+      schedule: "Live site — updated by pipeline above",
+      type: "Housing Search",
+      status: "active",
+      icon: "home"
     }
   ];
 
